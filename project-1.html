@@ -1,0 +1,101 @@
+<html>
+<head>
+</head>
+<body>
+
+<center><h1>learn Alphabet </h1></center>
+<p>
+number of letters :  
+<input type="text" name="num of letters" id="myText">
+<button onclick = "generateletters()">  
+        Generate 
+    </button> 
+</p>
+
+
+<script> 
+setInterval(function(){ localStorage.setItem("LOADEVENT", 0);localStorage.setItem("UNLOADEVENT", 0);localStorage.setItem('clickgeneratenumber', 0); }, 5000);
+	var clickgeneratenum=0;
+	var stl=0;
+	window.addEventListener('load', (event) => {
+ 	 if(stl!=0){
+	  var d= new date();
+	var stl = {Evnttype:"LOAD", Evnttarget:"Page" ,Evnttime:d.getTime().toString()};
+		}
+		else
+		{stl= {Evnttype:"LOAD", Evnttarget:"Page" ,Evnttime:new date().getTime()};}
+	localStorage.setItem("LOADEVENT", st);
+});
+	var stul=0;
+	
+		
+window.addEventListener('unload',  (event) => {
+	if(stul!=0){
+	stul += {Evnttype:"UNLOAD", Evnttarget:"Page" ,Evnttime:new date().getTime()};
+		}
+		else
+		{stul= {Evnttype:"UNLOAD", Evnttarget:"Page" ,Evnttime:new date().getTime()};}
+	localStorage.setItem("UNLOADEVENT", stul);
+	});
+
+     var lastresult=0;
+	 var lastimage=0;
+	 
+var reply_click = function()
+{
+if(lastimage!=0)
+{
+var elem = document.getElementById(lastimage);
+		elem.parentNode.removeChild(elem);
+		lastimage=0;
+}
+
+     var img = document.createElement('img'); 
+            img.src = this.innerHTML.toString()+".jpg";	
+			img.id='i'+this.id;			
+            document.body.appendChild(img);
+lastimage=img.id;			
+}
+
+		 function generateletters(){
+		clickgeneratenum = localStorage.getItem('clickgeneratenumber');
+		if(clickgeneratenum==null)clickgeneratenum=0;
+			 window.alert(clickgeneratenum);
+			 clickgeneratenum++;
+			 localStorage.setItem('clickgeneratenumber', clickgeneratenum);
+			 
+			 
+			    if(lastimage!=0)
+{
+var elem = document.getElementById(lastimage);
+		elem.parentNode.removeChild(elem);
+		lastimage=0;
+}
+			for (var i=0;i<lastresult;i++){
+		var elem = document.getElementById(i);
+		elem.parentNode.removeChild(elem);
+	}
+	var length=document.getElementById("myText").value;
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   var output =result.split('');
+  
+   lastresult=output.length;
+   for(var i=0;i<output.length;i++)
+   {
+   var btn = document.createElement("BUTTON");
+   btn.innerHTML = output[i];
+   btn.id=i;
+   btn.onclick= reply_click;
+   document.body.appendChild(btn);
+   }
+		 }
+   
+  
+    </script>
+</body>
+</html>
